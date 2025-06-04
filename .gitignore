@@ -1,0 +1,48 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Command-line builds
+/bin/
+/build/
+/dist/
+
+# Go vendor directory (if you vendor dependencies)
+/vendor/
+
+# Go workspace files
+*.code-workspace
+
+# IDE/editor files
+.vscode/
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Logs and databases
+*.log
+*.sqlite
+*.sqlite3
+
+# Coverage reports
+coverage.out
+
+# Temporary files
+*.tmp
+*.swp
+*.bak

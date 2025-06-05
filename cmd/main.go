@@ -7,9 +7,9 @@ import (
 	"log"
 	"os"
 	"text/template"
-	"time"
 
 	"github.com/joho/godotenv"
+	timer "github.com/jordiroca94/openai-go-script/internal"
 	openai "github.com/sashabaranov/go-openai"
 )
 
@@ -62,33 +62,16 @@ func main() {
 		MaxTokens: 1500,
 	}
 
-	// Timer goroutine
-	start := time.Now()
-	done := make(chan struct{})
+	stop := timer.StartTimer()
 
-	go func() {
-		ticker := time.NewTicker(100 * time.Millisecond)
-		defer ticker.Stop()
-		for {
-			select {
-			case <-ticker.C:
-				elapsed := time.Since(start).Seconds()
-				fmt.Printf("\rWaiting for response… %.1fs", elapsed)
-			case <-done:
-				return
-			}
-		}
-	}()
-
-	// Make the OpenAI API call
 	resp, err := client.CreateChatCompletion(ctx, chatReq)
-	close(done)   // Stop timer
-	fmt.Println() // Move to new line
+	stop()
+
+	fmt.Println()
 	if err != nil {
 		log.Fatalf("OpenAI API error: %v\n", err)
 	}
 
-	// Print result
 	if len(resp.Choices) > 0 {
 		fmt.Println("=== 🎬 OpenAI Movie Recommendations ===")
 		fmt.Println(resp.Choices[0].Message.Content)

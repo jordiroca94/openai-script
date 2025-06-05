@@ -9,7 +9,7 @@ Given the name of a movie:
 **Input:**  
 {{.MovieName}}
 
-You must recommend **5 high-quality movies** that are likely to be enjoyed by someone who liked the input movie.
+You must recommend **3 high-quality movies** that are likely to be enjoyed by someone who liked the input movie.
 
 ### ✅ Criteria for Recommendations
 - Critically acclaimed (preferably IMDb rating **7.5+**)  

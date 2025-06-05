@@ -36,7 +36,7 @@ func main() {
 		log.Fatalf("Failed to parse prompt: %v\n", err)
 	}
 
-	movieName := "Enemy"
+	movieName := "Shawshank Redemption"
 
 	var renderedPrompt bytes.Buffer
 	err = tpl.Execute(&renderedPrompt, struct {
@@ -52,14 +52,14 @@ func main() {
 	ctx := context.Background()
 
 	chatReq := openai.ChatCompletionRequest{
-		Model: "gpt-4",
+		Model: "gpt-4o",
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleUser,
 				Content: renderedPrompt.String(),
 			},
 		},
-		MaxTokens: 1500,
+		MaxTokens: 1000,
 	}
 
 	stop := timer.StartTimer()
@@ -70,6 +70,14 @@ func main() {
 	fmt.Println()
 	if err != nil {
 		log.Fatalf("OpenAI API error: %v\n", err)
+	}
+
+	// Log token usage
+	if resp.Usage.TotalTokens > 0 {
+		fmt.Printf("\n=== 🔢 Token Usage ===\n")
+		fmt.Printf("Prompt Tokens: %d\n", resp.Usage.PromptTokens)
+		fmt.Printf("Completion Tokens: %d\n", resp.Usage.CompletionTokens)
+		fmt.Printf("Total Tokens: %d\n", resp.Usage.TotalTokens)
 	}
 
 	if len(resp.Choices) > 0 {

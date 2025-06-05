@@ -19,7 +19,7 @@ You must recommend **3 high-quality movies** that are likely to be enjoyed by so
 - No low-budget or poorly rated films
 
 ### 📤 Output Format
-Your output must be a **valid JSON object** with exactly 5 movie recommendations. Each recommendation should include:
+Your output must be a **valid JSON object** with exactly 3 movie recommendations. Each recommendation should include:
 
 - `title`: Name of the movie  
 - `year`: Year of release  

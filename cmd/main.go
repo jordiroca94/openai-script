@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/joho/godotenv"
@@ -13,7 +14,7 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
-//  RUN script --> go run ./cmd/main.go
+//  RUN script --> go run ./cmd/main.go Shawshank Redemption
 
 func main() {
 	err := godotenv.Load()
@@ -26,6 +27,11 @@ func main() {
 		log.Fatalln("OPENAI_API_KEY environment variable not set")
 	}
 
+	if len(os.Args) < 2 {
+		log.Fatalln("Please provide a movie name as an argument. Example:\n go run ./cmd/main.go Shawshank Redemption")
+	}
+	movieName := strings.Join(os.Args[1:], " ")
+
 	tplBytes, err := os.ReadFile("prompts/prompt.tpl")
 	if err != nil {
 		log.Fatalf("Failed to read prompt: %v\n", err)
@@ -35,8 +41,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to parse prompt: %v\n", err)
 	}
-
-	movieName := "Shawshank Redemption"
 
 	var renderedPrompt bytes.Buffer
 	err = tpl.Execute(&renderedPrompt, struct {
@@ -72,7 +76,6 @@ func main() {
 		log.Fatalf("OpenAI API error: %v\n", err)
 	}
 
-	// Log token usage
 	if resp.Usage.TotalTokens > 0 {
 		fmt.Printf("\n=== 🔢 Token Usage ===\n")
 		fmt.Printf("Prompt Tokens: %d\n", resp.Usage.PromptTokens)

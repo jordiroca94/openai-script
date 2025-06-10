@@ -35,6 +35,7 @@ Build and run the Go script with your desired input title. It will render the pr
 
 ## Output Format
 
+```bash
 [
 {
 "title": "The Green Mile",
@@ -64,3 +65,5 @@ Build and run the Go script with your desired input title. It will render the pr
 "tmdb_id": 73
 }
 ]
+```
+

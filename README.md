@@ -25,7 +25,9 @@ cd openai-go-script
 
 ### 2. Set OpenAI API Key
 
+```bash
 export OPENAI_API_KEY=your-api-key-here
+```
 
 ### 3. Run the Script
 

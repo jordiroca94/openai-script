@@ -11,24 +11,6 @@ A modular Go application that leverages OpenAI's GPT-4o model to generate high-q
 - **Token Usage Analytics**: Logs detailed OpenAI API token consumption
 - **Structured Output**: Returns recommendations in clean, parseable JSON format
 
-## 🏗️ Project Structure
-
-```
-openai-go-script/
-├── cmd/
-│   └── main.go           # Entry point of the application
-├── internal/
-│   ├── timer.go          # Timer utility for measuring execution time
-│   └── openai/
-│       └── client.go     # Abstracted OpenAI client logic
-├── prompts/
-│   └── prompt.tpl        # Customizable prompt template
-├── .env                  # Environment variables (for API keys)
-├── go.mod                # Go module definition
-├── go.sum                # Go module checksums
-└── README.md             # This file
-```
-
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -68,7 +50,7 @@ go run ./cmd/main.go
 1. The application loads your OpenAI API key from environment variables
 2. It reads the prompt template from `prompts/prompt.tpl`
 3. The template is rendered with your specified movie title
-4. The prompt is sent to OpenAI's GPT-4o model through the abstracted client
+4. The prompt is sent to OpenAI's GPT-4o model through the client
 5. The response is processed and displayed in a structured format
 
 ## 📝 Customizing the Prompt Template
